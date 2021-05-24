@@ -130,3 +130,9 @@ dmypy.json
 
 # Idea catalog
 .idea/
+
+# venv
+venv/
+
+# database folder
+data/
