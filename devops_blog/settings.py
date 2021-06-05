@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'django_filters',
     'blog',
 ]
 
@@ -127,5 +128,22 @@ STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS':
+    'blog.custompagination.LimitOffsetPaginationWithUpperBound',
+    'PAGE_SIZE': 2,
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.OrderingFilter',
+        'rest_framework.filters.SearchFilter',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        #'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
